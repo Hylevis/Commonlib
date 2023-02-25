@@ -1,0 +1,68 @@
+- Implement a Binary Search Tree class
+	- Call the class BinarySearchTree
+	- Implement the following methods:
+		- cbegin
+		- cend
+		- Default Constructor
+		- Copy Constructor
+		- Initializer List Constructor
+		- Destructor
+		- Add
+		- Remove
+		- Exists (sees if a value exists in the tree, aka a binary search of the tree)
+		- IsEmpty
+		- Size & size
+		- Clear
+		- Operator=
+	- Make sure that your tree is SORTED if the values stored are not sorted, then it is not a Binary Search Tree. Performing a search on it should be the same as performing a binary search on a sorted array!
+		- A Node should never have a value greater than it on its Left branch (including all sub children!). As long as you follow this rule, it should be a valid BST that is sorted.
+- Implement a BST Forward Iterator. Its just like your forward iterator (so same functions), but you need to make it work on a Tree! 
+	- There are generally 2 algorithms you can use for this kind of iteration on a tree: Depth First Search and Breadth First Search
+		- https://www.khanacademy.org/computing/computer-science/algorithms/breadth-first-search/a/the-breadth-first-search-algorithm
+		- https://en.wikipedia.org/wiki/Depth-first_search
+- Implement a AVL Tree class
+	- Call the class AVLTree
+	- Implement the same methods as the BST
+		- It should use the same iterator base class as a BST. The Linked lists should be a good example of this!
+	- AVL Trees are Self-Balancing Binary Search Trees. This means that on top of implementing all of the same behaviors of a BST, it also maintains balance on the tree branches themselves. 
+		- All of the information you need for AVL trees and balancing them is here: https://www.programiz.com/dsa/avl-tree
+		- Do not use/look at the code examples at the bottom. Try to implement the algorithms yourself! 
+- Dont forget to Unit Test your code as you write it!!
+----------------------------------------
+UI Framework
+
+Goal: Make a simple framework for building a UI using trees. 
+
+Your UI framework should support the following basic Widgets:
+- Button
+	- A simple shape with no visual that can be clicked. Clicking the button should call a function that can be set on the Button (see std::function)
+- Textfield
+- Image
+
+Bonus widgets:
+- Checkbox
+- Slider
+
+Widgets should have the following properties with ways to modify them and retrieve them:
+- Width (int or float)
+- Height (int or float)
+- Parent (Widget*)
+- Children (Array<Widget*>)
+- Offset (vector2f or vector2i)
+	- The offset is like the position. But its relative to the parent's position and the Widget's anchoring to the parent (see below for anchoring).
+- Depth (int)
+	- how high up on the screen they are (relative to their parent). Bigger number means they should be on top
+	- Keep in mind, you will always be on top of your parent so this depth is to determine who is on top amongst the siblings.
+- Anchor (enum)
+	- This is the anchor point of your Widget
+	- The offset of the Widget will be based on a combination of this Anchor and the Anchor point to the parent
+	- should provide the following options (enum): Top Left, Top (center), Top Right, Left (center), Right (center), Center, Bottom Left, Bottom (center), Bottom Right
+- Anchor Point (relative to parent):
+	- Should use the same enum as Anchor (separate variable). This is to say where to we anchor to our parent.
+	
+You should be able to easily add and remove Widgets to any other Widget. Clicking on a Button should always click on whatever is topmost on the Screen and nothing below it (if there are multiple options). 
+
+Here is an example:
+You create an Image Widget with a Textfield Widget as a child just like in "example 1.png". To place the text like we do in the image, we can do it in several ways. Here are 2 examples:
+	- You could have an Anchor of Center (for the Textfield Widget) and you could Anchor to the parent's Center
+	- You could have an Anchor of Left (for the Textfield Widget) and you could Anchor to the parent's Left. You would then adjust the X offset to make it appear centered.
